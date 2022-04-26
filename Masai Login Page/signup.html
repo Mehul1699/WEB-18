@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #top-section{
+            width: 18%;
+            height: auto;
+            margin: auto;
+            text-align: center;
+        }
+        #container{
+            height: auto;
+            width: 30%;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            margin: auto;
+            padding: 20px 40px;
+        }
+        h2{
+            text-align: center;
+        }
+        input{
+            width: 90%;
+            height: 30px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="top-section">
+        <img src="https://sso.masaischool.com/brand_dark.svg" alt="">
+    </div>
+    <div id="container">
+        <h2>Sign Up</h2>
+        <form id="studentForm">
+            <label for="">Email</label><br />
+            <input id="email" type="email" placeholder="Enter Your Email"><br />
+            <label for="">Phone Number</label><br />
+            <input id="phone" type="number" placeholder="Enter Phone Number"><br />
+            <label for="">Password</label><br />
+            <input id="password" type="password" placeholder="Enter Password">
+            <input type="submit">
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+<script>
+    document.querySelector("#studentForm").addEventListener("submit", submitDetails);
+
+    var detailArr=JSON.parse(localStorage.getItem("studentData"))||[];
+
+    function submitDetails(){
+        event.preventDefault();
+
+        var detailObj={
+            studentEmail: studentForm.email.value,
+            studentPhone: studentForm.phone.value,
+            password: studentForm.password.value
+        }
+
+        detailArr.push(detailObj);
+
+        localStorage.setItem("studentData",JSON.stringify(detailArr));
+
+        var anchor=document.createElement("a");
+        anchor.setAttribute("href", "login.html");
+        anchor.innerText="Login Here";
+        
+        document.querySelector("#container").append(anchor);
+    }
+</script>

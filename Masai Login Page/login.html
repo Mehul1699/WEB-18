@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            text-align: center;
+        }
+        #login{
+            height: auto;
+            width: 25%;
+            margin: auto;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            display: flex;
+            align-items: center;
+            padding: 30px 20px;
+        }
+        input{
+            margin-bottom: 40px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login Page</h1>
+    <div id="login">
+        <form id="loginForm">
+            <label for="">Email</label><br />
+            <input id="loginEmail" type="email" placeholder="Enter Email"><br />
+            <label for="">Password</label><br />
+            <input id="loginPassword" type="password" placeholder="Enter Password"><br />
+            <input type="submit">
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+<script>
+    document.querySelector("#loginForm").addEventListener("submit", studentLogin);
+
+    var studentArr=JSON.parse(localStorage.getItem("studentData"));
+
+    function studentLogin(){
+        event.preventDefault();
+
+        var email=document.querySelector("#loginEmail").value;
+
+        var logpassword=document.querySelector("#loginPassword").value;
+
+        studentArr.forEach(function(ele){
+            if(ele.studentEmail==email && ele.password==logpassword)
+            {
+                alert("Login Successful");
+            }
+            else
+            {
+                alert("Wrong Login Credentials");
+            }
+        })
+    }
+</script>
