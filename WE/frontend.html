@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #top-section{
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        #container{
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(1, auto);
+            gap: 20px;
+            width: 90%;
+        }
+        #container>div{
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        #container>div>img:first-child{
+            width: 100%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        p+img{
+            height: 80px;
+            width: 150px;
+            margin-top: -25px;
+        }
+        p{
+            color: rgb(66, 65, 65);
+            margin-top: -10px;
+        }
+        h3{
+            margin-top: -1px;
+        }
+    </style>
+</head>
+<body>
+    <div id="top-section"></div>
+    <div id="container"></div>
+</body>
+</html>
+
+
+<script>
+    var requiredArr=JSON.parse(localStorage.getItem("investorData"));
+    console.log(requiredArr);
+
+
+    var heading=document.createElement("h1");
+    heading.innerText="Strategic Investors";
+    document.querySelector("#top-section").append(heading);
+
+    requiredArr.forEach(function(ele){
+        var dubba=document.createElement("div");
+
+        var photo=document.createElement("img");
+        photo.setAttribute("src", ele.investorImage);
+
+        var naam=document.createElement("h3");
+        naam.innerText=ele.investorName;
+
+        var profile=document.createElement("p");
+        profile.innerText=ele.investorRole;
+
+        var logo=document.createElement("img");
+        logo.setAttribute("src", ele.companyLogo);
+
+        dubba.append(photo, naam, profile, logo);
+
+        document.querySelector("#container").append(dubba);
+    });
+</script>
